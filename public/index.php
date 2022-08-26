@@ -1,9 +1,9 @@
 <?php
 
-use app\controller\ProductController;
+require_once('../vendor/autoload.php');
 
-echo 'HELLO WORLD';
-$controller = $new->ProductController->helo();
+use app\controller\ProductsController;
 
+$c1 = new ProductsController();
 
 ?>

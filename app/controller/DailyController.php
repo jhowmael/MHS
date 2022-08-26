@@ -3,7 +3,7 @@ namespace app\controller;
 
 use app\controller\BaseController;
 
-class Customer extends base{
+class DailyController extends baseController{
 
 }
 ?>
