@@ -1,0 +1,16 @@
+{
+    "name": "jhowmael/MHS",
+    "authors": [
+        {
+            "name": "Jonatan Ismael",
+            "email": "jonatan.ismael996@gamil.com"
+        }
+    ],
+    
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "app\\": "app/"
+        }
+    }
+}
