@@ -12,6 +12,8 @@ $c1 = new ProductsController();
 
 $c1->helo($text = 'JU <3 MAEL');
 
+echo "teste";
+
 dd($teste);
 
 ?>
