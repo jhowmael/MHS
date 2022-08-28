@@ -11,7 +11,7 @@ class ProductsController extends baseController
 
     }
 
-    public function helo($text)
+    public function helo($text)  
     {
         echo $text;
     }
