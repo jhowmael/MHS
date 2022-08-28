@@ -1,7 +1,13 @@
 <?php
+
 namespace app\controller;
 
-class BaseController{
+class BaseController
+{
+    public function __construct()
+    {
+
+    }
 
 }
 

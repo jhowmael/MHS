@@ -6,10 +6,14 @@ use app\controller\BaseController;
 
 class ProductsController extends baseController
 {
-    //contruct é vai rodar primeiro
     public function __construct()
     {
-        echo 'salve';
+
+    }
+
+    public function helo($text)
+    {
+        echo $text;
     }
 }
 
