@@ -1,10 +1,19 @@
 {
-    "name": "jonat/mhs",
-
-    "require": {},
-    "autoload": {
-        "psr-4": {
-            "app\\" : "app/" 
-        }
+  "name": "hms/mini-framework-php",
+  "authors": [
+    {
+      "name": "Gabriel Trindade",
+      "email": "gabriel18.trindade@hotmail.com",
+      "role": "developer"
+    },
+    {
+        "name": "Jonas"
     }
+  ],
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "app\\": "app/"
+    }
+  }
 }
