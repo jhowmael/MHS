@@ -2,13 +2,15 @@
 
 namespace app\controller;
 
-class BaseController
+use app\core\Controller;
+
+class BaseController extends Controller
 {
-    public function __construct()
+    public function home()
     {
 
+        $this->load('home/main', [
+            'nome' => 'MHS'
+]);
     }
-
 }
-
-?>

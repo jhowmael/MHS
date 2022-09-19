@@ -13,7 +13,7 @@ class ProductsController extends baseController
 
     public function helo($text)  
     {
-        echo $text;
+        echo "123";
     }
 }
 

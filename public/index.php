@@ -7,7 +7,6 @@ require_once('../app/functions/functions.php');
 new \app\core\RouterCore();
 
 
-echo "teste";
 
 
 ?>

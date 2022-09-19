@@ -6,7 +6,6 @@ class RouterCore
 {
     private $uri;
     private $method;
-
     private $getArr = [];
 
     public function __construct()
@@ -42,37 +41,93 @@ class RouterCore
     {
         $this->getArr[] = [
             'router' => $router,
-            'call' => $call,
+            'call' => $call
+        ];
+    }
+
+    private function post($router, $call)
+    {
+        $this->getArr[] = [
+            'router' => $router,
+            'call' => $call
         ];
     }
 
     private function execute()
     {
-
         switch ($this->method) {
-            case 'GET';
-
-                $this->executeGET();
-
+            case 'GET':
+                $this->executeGet();
                 break;
-
-            case 'POST';
-
+            case 'POST':
+                //$this->executePost();
                 break;
         }
     }
 
-    private function executeGET()
+    private function executeGet()
     {
         foreach ($this->getArr as $get) {
-            $r = $get['router'];
+            $r = substr($get['router'], 1);
 
-            echo $r . ' - ' . $this->uri . '<br/>';
-
-            if($get['router'] == $this->uri){
-                echo 'achamos';
+            if (substr($r, -1) == '/') {
+                $r = substr($r, 0, -1);
+            }
+            if ($r == $this->uri) {
+                if (is_callable($get['call'])) {
+                    $get['call']();
+                    break;
+                } else {
+                   //$this->executeController($get['call']);
+                }
             }
         }
+    }
+
+    // private function executePost()
+    // {
+    //     foreach ($this->getArr as $get) {
+    //         $r = substr($get['router'], 1);
+
+    //         if (substr($r, -1) == '/') {
+    //             $r = substr($r, 0, -1);
+    //         }
+
+    //         if ($r == $this->uri) {
+    //             if (is_callable($get['call'])) {
+    //                 $get['call']();
+    //                 return;
+    //             }
+
+    //             $this->executeController($get['call']);
+    //         }
+    //     }
+    // }
+
+    private function executeController($get)
+    {
+        $ex = explode('@', $get);
+        if (!isset($ex[0]) || !isset($ex[1])) {
+          // (new \app\controller\MessageController)->message('Dados inválidos', 'Controller ou método não encontrado: ' . $get, 404);
+            return;
+        }
+
+        $cont = 'app\\controller\\' . $ex[0];
+        if (!class_exists($cont)) {
+           // (new \app\controller\MessageController)->message('Dados inválidos', 'Controller não encontrada: ' . $get, 404);
+            return;
+        }
+
+
+        if (!method_exists($cont, $ex[1])) {
+           // (new \app\controller\MessageController)->message('Dados inválidos', 'Método não encontrado: ' . $get, 404);
+            return;
+        }
+
+        call_user_func_array([
+            new $cont,
+            $ex[1]
+        ], []);
     }
 
     private function normalizeURI($arr)
